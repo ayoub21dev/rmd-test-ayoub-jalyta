@@ -1,12 +1,17 @@
-﻿<!--
-Optional but recommended.
+﻿
+# Project Notes
 
-Tell us:
-- Which host you used (InfinityFree, 000webhost, Hostinger, Local + Cloudflare Tunnel, etc.)
-- Which WordPress theme you started from
-- Which plugins you installed (Elementor free? Rank Math? Other?)
-- Any deviation between your Figma design and the live page, and why
-- (If your `.fig` file is too large for git) the public Figma view link
+## Hosting
 
-If you have nothing to say, you may delete this file.
--->
+The live WordPress page is hosted on InfinityFree.
+
+Live URL: https://atlascoffetangier.infinityfreeapp.com/
+
+## WordPress theme
+
+I started from a block/FSE approach based on the Twenty Twenty-Five theme structure, then created a custom child/theme implementation for the Atlas Coffee Tangier landing page.
+
+## Plugins installed
+
+- Rank Math SEO: used for SEO title, meta description, focus keyword, XML sitemap, schema markup, and Google Search Console verification.
+
