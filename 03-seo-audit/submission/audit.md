@@ -3,7 +3,7 @@
 **Audited on:** 2026-05-16  
 **Audited by:** Ayoub Jalyta
 **Tools used:** PageSpeed Insights, Lighthouse, Rank Math SEO, Google Search Console, Ahrefs Webmaster Tools, Chrome DevTools / View Page Source
-**Evidence:** Screenshots are included in `/screenshots/` for PageSpeed mobile/desktop, Rank Math, Google Search Console sitemap submission, XML sitemap, robots.txt, Chrome DevTools page source, and Ahrefs Webmaster Tools.
+**Evidence:** Screenshots are included in `/screenshots/` for PageSpeed mobile/desktop, Rank Math, Google Search Console sitemap submission, Chrome DevTools page source, and Ahrefs Webmaster Tools.
  
 ## 1. Page snapshot
 
@@ -79,10 +79,10 @@ The main previous technical issues were:
 
 These were fixed during the audit process.
 
-Remaining technical issues are minor:
+Remaining technical SEO risks:
 - PageSpeed reports no text compression on the first document request. This is likely related to the InfinityFree hosting environment.
 - The hero WebP image is 57KB and could still be compressed slightly more.
-- Ahrefs Site Audit timed out on 5 URLs, likely because of free hosting or crawler limitations.
+- Ahrefs Site Audit timed out on 5 URLs with cURL error 52: the server did not reply anything. A normal cURL request to the homepage also returns an empty reply, while a browser-like request first receives an InfinityFree/OpenResty JavaScript challenge page. This points to the free hosting/proxy layer blocking or challenging crawlers, not to the WordPress page code itself.
 
 HTTPS is active and no mixed-content issue was observed.
 
@@ -98,7 +98,7 @@ Current Ahrefs data shows:
 
 This is expected because the site is newly published and has not started promotion or link building yet.
 
-Ahrefs Site Audit returned a low health score of 29 because 5 URLs timed out. This appears to be a hosting/crawler reliability issue rather than an SEO configuration issue, because Google Search Console verification and sitemap submission worked successfully.
+Ahrefs Site Audit returned a low health score of 29 because 5 URLs timed out. The error shown is cURL 52: the server did not reply anything. This points to InfinityFree's server/proxy layer not responding correctly to Ahrefs' crawler, rather than a content or WordPress SEO configuration issue.
 
 A realistic 90-day backlink plan:
 
