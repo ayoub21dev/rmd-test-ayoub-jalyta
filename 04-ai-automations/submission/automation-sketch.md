@@ -12,7 +12,7 @@ It is also easier to control than a simple Zapier zap: an agency can self-host i
 
 ## Local prototype
 
-I also built a local n8n demo of this workflow on my laptop. The demo receives a WordPress-like webhook payload, checks that the post is published, creates a mock AI summary, formats a Slack-style message, and returns the result through the webhook. Screenshot: `04-ai-automations/n8n-local-workflow-screenshot.png`.
+I also built a local n8n demo of this workflow on my laptop. The demo receives a WordPress-like webhook payload, checks that the post is published, creates a mock AI summary, formats a Slack message, posts it to Slack with an Incoming Webhook, and returns the result through the webhook. Screenshots: `04-ai-automations/submission/n8n-slack-workflow-screenshot.png` and `04-ai-automations/submission/slack-message-result-screenshot.png`.
 
 ## Trigger
 
