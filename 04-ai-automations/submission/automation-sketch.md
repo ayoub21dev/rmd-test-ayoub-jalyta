@@ -10,6 +10,10 @@ I would use n8n. It fits this workflow well because it has low-code nodes for we
 
 It is also easier to control than a simple Zapier zap: an agency can self-host it later, inspect failed runs, and add approval or logging steps without rebuilding the workflow.
 
+## Local prototype
+
+I also built a local n8n demo of this workflow on my laptop. The demo receives a WordPress-like webhook payload, checks that the post is published, creates a mock AI summary, formats a Slack-style message, and returns the result through the webhook. Screenshot: `04-ai-automations/n8n-local-workflow-screenshot.png`.
+
 ## Trigger
 
 The trigger is a WordPress webhook fired when a post status changes to `publish`. I would use the WP Webhooks plugin to send a POST request to an n8n Webhook URL, including the post ID, title, URL, author, excerpt, content, and publish date.
