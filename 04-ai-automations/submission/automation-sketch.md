@@ -12,7 +12,13 @@ It is also easier to control than a simple Zapier zap: an agency can self-host i
 
 ## Local prototype
 
-I also built a local n8n demo of this workflow on my laptop. The demo receives a WordPress-like webhook payload, checks that the post is published, creates a mock AI summary, formats a Slack message, posts it to Slack with an Incoming Webhook, and returns the result through the webhook. Screenshots: `04-ai-automations/submission/n8n-slack-workflow-screenshot.png` and `04-ai-automations/submission/slack-message-result-screenshot.png`.
+I also built a local n8n demo of this workflow on my laptop. The demo receives a WordPress-like webhook payload, checks that the post is published, creates a mock AI summary, formats a Slack message, posts it to Slack with an Incoming Webhook, and returns the result through the webhook.
+
+Evidence:
+
+![n8n Slack workflow screenshot](screenshots/n8n-slack-workflow.png)
+
+![Slack message result screenshot](screenshots/slack-message-result.png)
 
 ## Trigger
 
@@ -41,18 +47,24 @@ The trigger is a WordPress webhook fired when a post status changes to `publish`
 ## Diagram
 
 ```mermaid
-flowchart LR
-    A[WordPress post published] --> B[WP Webhooks plugin]
-    B --> C[n8n Webhook trigger]
-    C --> D{Published blog post?}
-    D -- No --> E[Stop]
-    D -- Yes --> F{Already sent?}
-    F -- Yes --> E
-    F -- No --> G[Fetch/clean post content]
-    G --> H[AI summary node]
-    H --> I[Format Slack message]
-    I --> J[Post to Slack channel]
-    J --> K[Save post ID in sent log]
+flowchart TD
+    A[WordPress publishes a blog post] --> B[WP Webhooks sends post data]
+    B --> C[n8n Webhook receives payload]
+    C --> D{Is post_type = post<br/>and status = publish?}
+
+    D -- No --> E[Stop workflow<br/>No Slack message]
+    D -- Yes --> F{Was this post<br/>already sent?}
+
+    F -- Yes --> G[Stop workflow<br/>Avoid duplicate Slack post]
+    F -- No --> H[Fetch or clean post content]
+
+    H --> I[AI summary step<br/>2 sentences + 3 takeaways]
+    I --> J[Format Slack message]
+    J --> K[Post message to Slack channel]
+    K --> L[Save post ID and Slack message ID]
+
+    K -- API error --> M[Retry up to 3 times]
+    M -- Still failing --> N[Alert site admin<br/>Keep post marked as unsent]
 ```
 
 ## Part C - A repetitive task I would automate
